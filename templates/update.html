@@ -10,6 +10,11 @@
 
     <form action = "/update/{{task.id}}" method = "POST">
         <input type = "text" name = "content" id = "content" value = "{{task.content}}">
+        {% if task.deadline != None %}
+            <input type = "date" name = "deadline" id = "deadline" value = "{{task.deadline.date()}}">
+        {% else %}
+            <input type = "date" name = "deadline" id = "deadline">
+        {% endif %}
         <input type = "submit" value = "Update">
     </form>
 </div>
