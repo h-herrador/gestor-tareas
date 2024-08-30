@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Tus notas</title>
+{% endblock %}
+
+{% block body %}
+<div class = "content">
+    <table>
+        <tr>
+            <th style="text-align: center;">Subject</th>
+            <th style="text-align: center;">Grade</th>
+            <th style="text-align: center;">Options</th>
+        </tr>
+        {% for mark in marks %}
+            <tr>
+                <td style="text-align: center;">{{ mark.subject }}</td>
+                <td style="text-align: center;">{{ mark.grade }}</td>
+                <td style="text-align: center;"> <a href = "/marks/delete/{{mark.id}}">Delete</a> <br>
+                <a href = "/marks/update/{{mark.id}}">Update</a></td>
+            </tr>
+        {% endfor %}
+    </table>
+
+    <form action = "/marks" method = "POST" class = "cent_form">
+        <select name="subject" id="subject" required>
+            {% for subject in subjects %}
+            <option value="{{ subject }}">{{ subject }}</option>
+            {% endfor %}
+        </select>
+        <input type = "number" name = "grade" step = 0.05 id = "grade" min = 0 max = 10 required>
+        <input type = "number" name = "weight" id = "weight" min = 0 max = 100>
+        <input type = "submit" value = "Add Mark">
+    </form>
+
+</div>
+{% endblock %}

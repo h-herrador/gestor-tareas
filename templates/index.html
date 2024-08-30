@@ -28,16 +28,17 @@
                         <td style="text-align: center;">-</td>
                     {% endif %}
                     <td style="text-align: right;">
-                        <a href = "/delete/{{task.id}}">Delete</a>
+                        <a href = "/tasks/delete/{{task.id}}">Delete</a>
                         <br>
-                        <a href = "/update/{{task.id}}">Update</a>
+                        <a href = "/tasks/update/{{task.id}}">Update</a>
                     </td>
                 </tr>
             {% endfor %}
         </table>
     {% endif %}
 
-    <form action = "/" method = "POST">
+    <form action = "/" method = "POST", class = "cent_form">
+        main()
         <input type = "text" name = "content" id = "content">
         <input type = "date" name = "deadline" id = "deadline">
         <input type = "submit" value = "Add Task">
