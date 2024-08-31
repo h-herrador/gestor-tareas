@@ -1,33 +1,17 @@
 from flask import Flask, render_template, request, redirect
-from flask_sqlalchemy import SQLAlchemy
-from datetime import datetime
+from src.exceptions import error
+from src.models import *
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
-db = SQLAlchemy(app)
-
-class To_do(db.Model):
-    id = db.Column(db.Integer, primary_key = True)
-    content = db.Column(db.String(200), nullable = False)
-    date_created = db.Column(db.DateTime, default = datetime.now())
-    deadline = db.Column(db.DateTime, nullable = True, default = None)
-
-
-    def __repr__(self):
-        return f"<Task {self.id}>"
-
-class Marks(db.Model):
-    id = db.Column(db.Integer, primary_key = True)
-    subject = db.Column(db.String(200), nullable = False)
-    grade = db.Column(db.Float, nullable = False)
-    weight = db.Column(db.Integer, nullable = False, default = 100)
+db.init_app(app)
 
 
 @app.route('/', methods = ['POST', 'GET'])
 def index():
     if request.method == 'POST':
         task_content = request.form['content']
-        deadline = request.form.get('deadline') # siempre devuelve None
+        deadline = request.form.get('deadline')
         try:
             deadline = datetime.strptime(deadline, '%Y-%m-%d') 
         except:
@@ -140,7 +124,11 @@ def update_mark(id):
     else:
         return render_template('marks/update.html', mark = mark, subjects = ["FC", "AL"])
 
+@app.route('/exception', methods = ['GET'])
+def exception():
+    return render_template('exceptions/exceptions.html')
 
+error(app)
 
 if __name__ == "__main__":
     app.run(debug = True)

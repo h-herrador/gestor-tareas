@@ -6,21 +6,25 @@
 
 {% block body %}
 <div class = "content">
-    <table>
-        <tr>
-            <th style="text-align: center;">Subject</th>
-            <th style="text-align: center;">Grade</th>
-            <th style="text-align: center;">Options</th>
-        </tr>
-        {% for mark in marks %}
+    {% if marks|length > 0 %}
+        <table>
             <tr>
-                <td style="text-align: center;">{{ mark.subject }}</td>
-                <td style="text-align: center;">{{ mark.grade }}</td>
-                <td style="text-align: center;"> <a href = "/marks/delete/{{mark.id}}">Delete</a> <br>
-                <a href = "/marks/update/{{mark.id}}">Update</a></td>
+                <th style="text-align: center;">Subject</th>
+                <th style="text-align: center;">Grade</th>
+                <th style="text-align: center;">Options</th>
             </tr>
-        {% endfor %}
-    </table>
+            {% for mark in marks %}
+                <tr>
+                    <td style="text-align: center;">{{ mark.subject }}</td>
+                    <td style="text-align: center;">{{ mark.grade }}</td>
+                    <td style="text-align: center;"> <a href = "/marks/delete/{{mark.id}}">Delete</a> <br>
+                    <a href = "/marks/update/{{mark.id}}">Update</a></td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <p style="text-align: center;">There are no marks. Please create one below</p>
+    {% endif %}
 
     <form action = "/marks" method = "POST" class = "cent_form">
         <select name="subject" id="subject" required>
