@@ -8,13 +8,17 @@ class To_do(db.Model):
     content = db.Column(db.String(200), nullable = False)
     date_created = db.Column(db.DateTime, default = datetime.now())
     deadline = db.Column(db.DateTime, nullable = True, default = None)
+    
 
+class Subjects(db.Model):
+    id = db.Column(db.Integer, primary_key = True)
+    name = db.Column(db.String(200), nullable = False)
 
-    def __repr__(self):
-        return f"<Task {self.id}>"
 
 class Marks(db.Model):
     id = db.Column(db.Integer, primary_key = True)
-    subject = db.Column(db.String(200), nullable = False)
+    subject_id = db.Column(db.String(200), db.ForeignKey(Subjects.id), nullable = False)
     grade = db.Column(db.Float, nullable = False)
-    weight = db.Column(db.Integer, nullable = False, default = 100)
+    weight = db.Column(db.Integer, default = 100)
+
+    subject = db.relationship('Subjects', backref = db.backref('marks', lazy = True))

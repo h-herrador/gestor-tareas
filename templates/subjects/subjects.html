@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Tus asignaturas</title>
+{% endblock %}
+
+{% block body %}
+<div class = "content", style="text-align: center;">
+    {% if subjects|length == 0 %}
+        <p>There are no subjects. Please add one below</p>
+    
+    {% else %}
+        <p>Esto es una prueba</p>
+    
+    {% endif %}
+</div>
+
+{% endblock %}

@@ -5,7 +5,7 @@ from src.models import *
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
 db.init_app(app)
-
+error(app)
 
 @app.route('/', methods = ['POST', 'GET'])
 def index():
@@ -124,11 +124,24 @@ def update_mark(id):
     else:
         return render_template('marks/update.html', mark = mark, subjects = ["FC", "AL"])
 
+@app.route('/subjects', methods = ['GET', 'POST'])
+def subjects():
+    if request.method == 'POST':
+        new_subject = Subjects(name = request.form.get('name'))
+
+        try:
+            db.session.add(new_subject)
+            db.session.commit()
+            return redirect('/subjects')
+        
+        except:
+            return "There has been an issue adding your subject"
+        
+    else:
+        subjects = Subjects.query.order_by(Subjects.name).all()
+        return render_template('subjects/subjects.html', subjects = subjects)
+
+
 @app.route('/exception', methods = ['GET'])
 def exception():
     return render_template('exceptions/exceptions.html')
-
-error(app)
-
-if __name__ == "__main__":
-    app.run(debug = True)
