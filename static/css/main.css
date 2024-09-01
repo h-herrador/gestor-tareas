@@ -2,7 +2,7 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #FEFDED;
+    background-color: #D2B48C;
 }
 
 
@@ -17,13 +17,13 @@ body {
 
 
 .content h1 {
-    color: #333;
+    color: #000000;
     margin-bottom: 20px;
 }
 
 
 .content p {
-    color: #555;
+    color: #000000;
     font-size: 1.1em;
     margin-top: 20px;
 }
@@ -42,7 +42,7 @@ table th, table td {
 }
 
 table th {
-    background-color: #C6EBC5;
+    background-color: #654321;
     color: white;
 }
 
@@ -51,7 +51,7 @@ table tr:nth-child(even) {
 }
 
 table a {
-    color: #C6EBC5;
+    color: #D2B48C;
     text-decoration: none;
 }
 
@@ -70,13 +70,19 @@ form {
 form input[type="text"] {
     flex: 1;
     padding: 10px;
-    border: 1px solid #ffffff;
+    outline: none;
+    border: 1px solid #000000;
     border-radius: 4px;
     max-width: 125px;
 }
 
+form input[type="text"]:focus {
+    border: 4px solid #654321;
+    outline: none;
+}
+
 form input[type="submit"] {
-    background-color: #C6EBC5;
+    background-color: #D2B48C;
     color: white;
     border: none;
     padding: 10px 20px;
@@ -98,7 +104,7 @@ form input[type="number"] {
 }
 
 form input[type="submit"]:hover {
-    background-color: #A1C398;
+    background-color: #654321;
     margin-left: 5px;
     margin-right: 5px;
 }
@@ -106,6 +112,12 @@ form input[type="submit"]:hover {
 form input[type="date"]:hover {
     margin-left: 5px;
     margin-right: 5px;
+}
+
+form input[type="date"]:focus {
+    border: 4px solid #654321;
+    border-radius: 4px;
+    outline: none;
 }
 
 .cent_form {
@@ -134,12 +146,12 @@ form input[type="date"]:hover {
 }
 
 .barra a:hover {
-    background-color: #A1C398; 
+    background-color: #654321; 
 }
 
 
 .barra a.active {
-    background-color: #A1C398; 
+    background-color: #654321; 
     color: white; 
 }
 

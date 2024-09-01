@@ -122,7 +122,7 @@ def update_mark(id):
         except:
             return "There has been an issue updating your mark"
     else:
-        return render_template('marks/update.html', mark = mark, subjects = ["FC", "AL"])
+        return render_template('marks/update.html', mark = mark, subjects = [])
 
 @app.route('/subjects', methods = ['GET', 'POST'])
 def subjects():
