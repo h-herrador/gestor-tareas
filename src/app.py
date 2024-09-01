@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, redirect
 from src.exceptions import error
 from src.models import *
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder = "../templates", static_folder = "../static")
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
 db.init_app(app)
 error(app)

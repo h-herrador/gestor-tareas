@@ -7,6 +7,14 @@
     {% block head %}{% endblock %}
 </head>
 <body>
+    <div id = "barra" class = "barra">
+        <a href = "{{ url_for('index') }}"> Inicio </a>
+        <a href = "{{ url_for('subjects') }}"> Asignaturas</a>
+        <a href = "{{ url_for('marks') }}"> Notas</a>
+        <div class = "logo_centrado">
+            <img src = "../static/images/logo_blanco_horizontal.png">
+        </div>
+    </div>
     {% block body %}{% endblock %}
 </body>
 </html>
